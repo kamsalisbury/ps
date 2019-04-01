@@ -18,4 +18,3 @@ Test-NetConnection -ComputerName FQDN -InformationLevel Detailed
 
 # Simple connectivity status
 Test-NetConnection -ComputerName FQDN -Port 80 -InformationLevel Quiet
-
