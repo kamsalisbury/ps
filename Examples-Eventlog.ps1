@@ -8,6 +8,7 @@ Get-EventLog -ComputerName $env:COMPUTERNAME -LogName System -Newest 100 -Before
 Get-EventLog -ComputerName $env:COMPUTERNAME -LogName System -Newest 100 | Where {$_.EventType -like 'Error' -or $_.EventType -like 'Warning'} | Where {$_.Source -like 'Disk'} | Select-Object -Property Time, Message
 
 # Security Log
+# Logon Event IDs; Logon 4624, Fail 4625, Logoff 4647
 # List a specific Security log eventID (for failed login)
 Get-EventLog -ComputerName $env:COMPUTERNAME -LogName Security -Newest 100 | Where {$_.EventID -eq '4625'} | Select-Object -Property Time,Message
 
@@ -20,3 +21,7 @@ Get-EventLog -LogName Security -ComputerName HostOrFQDN | Where-Object {$_.Event
 # Application Log
 # List Application log items for a specific application or service
 Get-EventLog -LogName Application -Newest 10 -Source "Windows Search Service"
+
+# System Log
+# List DNS Registration Fails
+Get-EventLog -LogName System -Newest 50 | Where-Object {$_.EventID -eq "8015"}
