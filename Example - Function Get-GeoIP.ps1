@@ -31,14 +31,14 @@ Version1.00, 2019-08-20 - Initial version
 param (
 
     [Parameter(Mandatory=$true, Position=0, HelpMessage="`t Enter the IP Address to query")]
-    [string] $IP
+    [string] $ipaddress
     ,
 	[Parameter(Mandatory=$true, Position=1, HelpMessage="`t Enter your API access key from ipstack.com")]
-	[string] $Key
+	[string] $ipstackkey
 )
 
 function Get-GeoIP() {
-        $query = 'http://api.ipstack.com/'+$IP+'?access_key='+$Key
+        $query = 'http://api.ipstack.com/'+$ipaddress+'?access_key='+$ipstackkey
         $geoip = Invoke-RestMethod $query -ErrorAction Stop
     
         return $geoip
