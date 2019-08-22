@@ -37,11 +37,11 @@ param (
 	[string] $Key
 )
 
-function GetIPGeolocation() {
+function Get-GeoIP() {
         $query = 'http://api.ipstack.com/'+$IP+'?access_key='+$Key
         $geoip = Invoke-RestMethod $query -ErrorAction Stop
     
         return $geoip
 }
 
-GetIPGeolocation $ipaddress $ipstackkey
+Get-GeoIP $ipaddress $ipstackkey
